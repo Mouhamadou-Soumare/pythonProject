@@ -14,12 +14,23 @@ Ce projet est une API REST développée avec FastAPI pour gérer les information
    cd pythonProject
    ```
 
-2. **Démarrer le serveur FastAPI avec Docker**
+2. **Démarrer Docker** :
+   Assurez-vous que Docker est en cours d'exécution sur votre machine. Vous pouvez vérifier cela en lançant l'application Docker Desktop ou en exécutant une commande Docker simple comme `docker --version` pour vérifier que Docker répond.
+
+
+3. **Démarrer le serveur FastAPI avec Docker**
    ```bash
    docker-compose up -d
    ```
 
    Le serveur sera lancé sur le port `8000`.
+
+
+
+      ### Utilisation de la bibliothèque Faker
+      
+      Nous avons utilisé la bibliothèque Faker pour générer des données fictives pour les étudiants et leurs notes. Cela facilite les tests et le développement. Docker encapsule la configuration de Faker, rendant l'application facile à déployer et à exécuter.
+
 
 ## Documentation de l'API
 
