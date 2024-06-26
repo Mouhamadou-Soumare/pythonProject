@@ -1,7 +1,17 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from .routes import router as student_router
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from .models import Base
+
+SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://root:root@mariadb/fastapi_db"
 
 app = FastAPI()
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base.metadata.create_all(bind=engine)
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(name: str = "World"):
@@ -25,3 +35,6 @@ async def read_root(name: str = "World"):
     </html>
     """
     return HTMLResponse(content=html_content, status_code=200)
+
+# Include the student router
+app.include_router(student_router)
