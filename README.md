@@ -4,8 +4,7 @@ Ce projet est une API REST développée avec FastAPI pour gérer les information
 
 ## Prérequis
 
-- **Python** : Assurez-vous d'avoir Python 3.12 ou une version supérieure installé sur votre machine.
-- **Poetry** : Assurez-vous d'avoir Poetry installé sur votre machine.
+- **Docker** : Assurez-vous d'avoir Docker installé sur votre machine.
 
 ## Étapes
 
@@ -15,22 +14,12 @@ Ce projet est une API REST développée avec FastAPI pour gérer les information
    cd pythonProject
    ```
 
-2. **Installer Poetry**
+2. **Démarrer le serveur FastAPI avec Docker**
    ```bash
-   curl -sSL https://install.python-poetry.org | python3 -
+   docker-compose up -d
    ```
 
-3. **Installer les dépendances du projet**
-   ```bash
-   poetry install
-   ```
-
-4. **Démarrer le serveur FastAPI**
-   ```bash
-   poetry run uvicorn app.main:app --reload
-   ```
-
-
+   Le serveur sera lancé sur le port `8000`.
 
 ## Documentation de l'API
 
