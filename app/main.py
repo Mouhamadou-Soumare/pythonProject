@@ -6,12 +6,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from .models import Base
 
+# Configuration de l'URL de la base de données
 SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://root:root@mariadb/fastapi_db"
 
-app = FastAPI()
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base.metadata.create_all(bind=engine)
+app = FastAPI() #Initialisation de l'application FastAPI
+engine = create_engine(SQLALCHEMY_DATABASE_URL) # Gère les connexions à la base de données
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine) # Création d'une session locale
+Base.metadata.create_all(bind=engine) # Création des tables
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(name: str = "World"):
@@ -36,5 +37,5 @@ async def read_root(name: str = "World"):
     """
     return HTMLResponse(content=html_content, status_code=200)
 
-# Include the student router
+# Ajouter le router
 app.include_router(student_router)
