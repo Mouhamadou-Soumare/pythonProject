@@ -4,8 +4,7 @@ Ce projet est une API REST développée avec FastAPI pour gérer les information
 
 ## Prérequis
 
-- **Python** : Assurez-vous d'avoir Python 3.12 ou une version supérieure installé sur votre machine.
-- **Poetry** : Assurez-vous d'avoir Poetry installé sur votre machine.
+- **Docker** : Assurez-vous d'avoir Docker installé et en cours d'exécution sur votre machine.
 
 ## Étapes
 
@@ -15,22 +14,26 @@ Ce projet est une API REST développée avec FastAPI pour gérer les information
    cd pythonProject
    ```
 
-2. **Installer Poetry**
+2. **Démarrer Docker**
+   Assurez-vous que Docker est en cours d'exécution sur votre machine. Vous pouvez vérifier cela en lançant l'application Docker Desktop ou en exécutant une commande Docker simple comme `docker --version` pour vérifier que Docker répond.
+
+3. **Démarrer le serveur FastAPI avec Docker Compose**
    ```bash
-   curl -sSL https://install.python-poetry.org | python3 -
+   docker-compose up -d
    ```
 
-3. **Installer les dépendances du projet**
-   ```bash
-   poetry install
-   ```
+   Le serveur sera lancé sur le port `8000`.
 
-4. **Démarrer le serveur FastAPI**
-   ```bash
-   poetry run uvicorn app.main:app --reload
-   ```
+## Utilisation de Faker avec Docker
 
+Nous avons utilisé la bibliothèque Faker pour générer des données fictives pour les étudiants et leurs notes. Cela facilite les tests et le développement. Docker encapsule la configuration de Faker, rendant l'application facile à déployer et à exécuter.
 
+## Exporter les Données en CSV
+
+L'application inclut un endpoint pour exporter les données des étudiants en format CSV. Voici comment cela fonctionne :
+- Accédez à http://127.0.0.1:8000/ pour le point de terminaison principal.
+- Accédez à [http://127.0.0.1:8000/export](http://127.0.0.1:8000/export) pour exporter les données en CSV (par défaut).
+- Accédez à [http://127.0.0.1:8000/export?format=json](http://127.0.0.1:8000/export?format=json) pour exporter les données en JSON.
 
 ## Documentation de l'API
 
@@ -47,6 +50,12 @@ FastAPI génère automatiquement une documentation interactive que vous pouvez u
 4. **Obtenir une note spécifique d'un étudiant** : `GET /students/{student_id}/grades/{grade_id}`
 5. **Supprimer une note spécifique d'un étudiant** : `DELETE /students/{student_id}/grades/{grade_id}`
 6. **Exporter les données** : `GET /export`
+7. **Voir la liste de tous les étudiants et leurs notes** : `GET /students`
+8. **Voir toutes les notes d'un étudiant** : `GET /students/{student_id}/grades`
+
+## Tests des Endpoints avec Postman
+
+Pour tester les endpoints, il suffit de télécharger le fichier `pythonProject.postman_collection.json` qui se trouve à la racine du projet et de l'importer dans Postman.
 
 ## Arborisation du Projet
 
@@ -55,22 +64,27 @@ Voici la structure de base du projet :
 ```
 myfastapiproject/
 ├── app/
+│   ├── __pycache__/
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── crud.cpython-312.pyc
+│   │   ├── database.cpython-312.pyc
+│   │   ├── main.cpython-312.pyc
+│   │   ├── models.cpython-312.pyc
+│   │   ├── routes.cpython-312.pyc
+│   │   ├── schemas.cpython-312.pyc
 │   ├── __init__.py
-│   ├── main.py
-│   ├── models.py
-│   ├── schemas.py
 │   ├── crud.py
 │   ├── database.py
-│   ├── dependencies.py
-│   ├── routers/
-│   │   ├── __init__.py
-│   │   ├── student.py
-│   └── tests/
-│       ├── __init__.py
-│       ├── test_main.py
-│       ├── test_student.py
-├── .env
-├── requirements.txt
-└── README.md
+│   ├── main.py
+│   ├── models.py
+│   ├── routes.py
+│   ├── schemas.py
+├── .gitignore
+├── Dockerfile
+├── README.md
+├── docker-compose.yml
+├── poetry.lock
+├── populate_data.py
+├── pyproject.toml
+└── requirements.txt
 ```
-

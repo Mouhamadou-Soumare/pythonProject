@@ -12,12 +12,14 @@ from .database import get_db
 # Importer les modèles et les routes
 from .models import Base, Student, Grade
 from .routes import router as student_router
+
+# Configuration de l'URL de la base de données
 SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://root:root@mariadb/fastapi_db"
 
-app = FastAPI()
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base.metadata.create_all(bind=engine)
+app = FastAPI() #Initialisation de l'application FastAPI
+engine = create_engine(SQLALCHEMY_DATABASE_URL) # Gère les connexions à la base de données
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine) # Création d'une session locale
+Base.metadata.create_all(bind=engine) # Création des tables
 
 
 
@@ -45,6 +47,7 @@ async def read_root(name: str = "World"):
     </html>
     """
     return HTMLResponse(content=html_content, status_code=200)
+
 
 @app.get("/export")
 def export_data(format: str = Query("csv", enum=["csv", "json"]), db: Session = Depends(get_db)):
@@ -82,5 +85,5 @@ def export_data(format: str = Query("csv", enum=["csv", "json"]), db: Session = 
     # Si le format n'est ni CSV ni JSON, lever une erreur
     raise HTTPException(status_code=400, detail="Invalid format specified")
 
-# Include the student router
+# Ajouter le router
 app.include_router(student_router)
