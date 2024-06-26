@@ -21,6 +21,13 @@ Ce projet est une API REST développée avec FastAPI pour gérer les information
 
    Le serveur sera lancé sur le port `8000`.
 
+
+
+      ### Utilisation de la bibliothèque Faker
+      
+      Nous avons utilisé la bibliothèque Faker pour générer des données fictives pour les étudiants et leurs notes. Cela facilite les tests et le développement. Docker encapsule la configuration de Faker, rendant l'application facile à déployer et à exécuter.
+
+
 ## Documentation de l'API
 
 FastAPI génère automatiquement une documentation interactive que vous pouvez utiliser pour tester les endpoints.
