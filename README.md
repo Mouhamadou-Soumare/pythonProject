@@ -11,8 +11,8 @@ Ce projet est une API REST développée avec FastAPI pour gérer les information
 
 1. **Cloner le dépôt**
    ```bash
-   git clone https://github.com/votre-utilisateur/votre-repo.git
-   cd votre-repo
+   git clone git@github.com:Mouhamadou-Soumare/pythonProject.git
+   cd pythonProject
    ```
 
 2. **Installer Poetry**
