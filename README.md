@@ -88,3 +88,20 @@ myfastapiproject/
 ├── pyproject.toml
 └── requirements.txt
 ```
+## Test
+
+Pour lancer les tests, exécutez la commande pytest depuis le conteneur Docker :
+
+
+```
+docker exec -it <container_id> pytest
+```
+
+
+## Auteur
+
+- Mouhamadou Soumare- [Email](mailto:mouhamadou.soumare@eemi.com)
+- Choeurtis Tchounga- [Email](mailto:choeurtis.tchounga@eemi.com)
+- Noham Hirep- [Email](mailto:noham.hirep@eemi.com)
+- Loanie Urity- [Email](mailto:loanie.urity@eemi.com)
+

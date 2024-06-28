@@ -11,6 +11,7 @@ class GradeCreate(GradeBase):
 
 class Grade(GradeBase):
     id: UUID = Field(..., description="Identifier for the grade")
+    student_id: str  
 
     class Config:
         from_attributes = True

@@ -6,7 +6,7 @@ services:
     volumes:
       - .:/app  
     ports:
-      - "8000:80"  
+      - "8000:80"
     depends_on:
       - mariadb
     environment:
@@ -14,6 +14,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_DATABASE=fastapi_db
+      - PYTHONPATH=/app 
     command: >
       sh -c "
       /wait-for-it.sh mariadb:3306 -- 

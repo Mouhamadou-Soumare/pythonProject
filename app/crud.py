@@ -46,7 +46,7 @@ def get_grade(db: Session, student_id: str, grade_id: str):
 # Crée un nouvelle Note pour l'utilisateyr et renvoie la Note créé
 def create_grade(db: Session, student_id: str, grade: GradeCreate):
     db_grade = Grade(
-        id=str(uuid.uuid4()),  # Ensure ID is generated as UUID
+        id=str(uuid.uuid4()),  
         course=grade.course,
         score=grade.score,
         student_id=student_id

@@ -16,11 +16,15 @@ from .routes import router as student_router
 # Configuration de l'URL de la base de données
 SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://root:root@mariadb/fastapi_db"
 
-app = FastAPI() #Initialisation de l'application FastAPI
-engine = create_engine(SQLALCHEMY_DATABASE_URL) # Gère les connexions à la base de données
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine) # Création d'une session locale
-Base.metadata.create_all(bind=engine) # Création des tables
+app = FastAPI()
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base.metadata.create_all(bind=engine)  # Ensure tables are created
 
+@app.on_event("startup")
+async def startup_event():
+    # Create tables if they don't exist
+    Base.metadata.create_all(bind=engine)
 
 
 @app.get("/", response_class=HTMLResponse)

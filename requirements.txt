@@ -5,3 +5,5 @@ mysqlclient
 pydantic
 faker
 pandas
+pytest
+httpx
