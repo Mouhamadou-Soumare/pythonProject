@@ -44,7 +44,7 @@ def get_student_grade(student_id: str, grade_id: str, db: Session = Depends(data
         raise HTTPException(status_code=404, detail="Grade not found")
     return db_grade
 
-@router.post("/student/{student_id}/grades/", response_model=schemas.Grade)
+@router.post("/student/{student_id}/grades", response_model=schemas.Grade)
 def create_grade(student_id: str, grade: schemas.GradeCreate, db: Session = Depends(database.get_db)):
     db_student = crud.get_student(db, student_id)
     if db_student is None:
