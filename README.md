@@ -88,7 +88,7 @@ myfastapiproject/
 ├── pyproject.toml
 └── requirements.txt
 ```
-## Test
+## Test Pytest
 
 Pour lancer les tests, exécutez la commande pytest depuis le conteneur Docker :
 
